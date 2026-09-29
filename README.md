@@ -44,7 +44,7 @@
 
 Users provide a natural-language travel request such as:
 
-> Plan a complete 7-day England trip from Sri Lanka including flights, hotels, sightseeing, and a budget under 3 lakhs.
+> Plan a complete 7-day England trip from Sri Lanka including flights, hotels, sightseeing, and a budget under 300k in lkr.
 
 Travexa AI processes the request through a specialized sequential workflow:
 
