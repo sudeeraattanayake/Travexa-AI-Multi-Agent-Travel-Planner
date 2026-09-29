@@ -37,7 +37,7 @@ def get_database_url():
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     raise ValueError(
-        "GROQ_API_KEY is missing. Please add it to your .env file.")
+        "OPENAI_API_KEY is missing. Please add it to your .env file.")
 
 
 # LLM
