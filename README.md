@@ -959,11 +959,11 @@ Travexa-AI-Travel-Plan.pdf
 
 ### 🇬🇧 England
 
-> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under 3 lakhs.
+> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under 300k in lkr.
 
 ### 🇯🇵 Japan
 
-> Plan a 7-day Japan trip from Sri Lanka under 3 lakhs including flights, hotels, food and sightseeing.
+> Plan a 7-day Japan trip from Sri Lanka under 300k rupees including flights, hotels, food and sightseeing.
 
 ### 🇦🇪 Dubai
 
