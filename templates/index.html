@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Travexa AI - Multi-Agent AI Travel Planner">
+
+    <title>Travexa AI Trip Planner</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         ANIMATED BACKGROUND
+    ========================== -->
+
+    <div class="page-bg">
+
+        <div class="grid-overlay"></div>
+
+        <div class="noise-overlay"></div>
+
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+
+        <div class="stars">
+            <span style="--x: 8%; --y: 18%; --delay: 0s;"></span>
+            <span style="--x: 18%; --y: 72%; --delay: 1s;"></span>
+            <span style="--x: 30%; --y: 26%; --delay: 2s;"></span>
+            <span style="--x: 42%; --y: 82%; --delay: 3s;"></span>
+            <span style="--x: 55%; --y: 15%; --delay: 4s;"></span>
+            <span style="--x: 67%; --y: 65%; --delay: 1.5s;"></span>
+            <span style="--x: 76%; --y: 32%; --delay: 2.5s;"></span>
+            <span style="--x: 88%; --y: 76%; --delay: 3.5s;"></span>
+            <span style="--x: 94%; --y: 20%; --delay: 0.5s;"></span>
+        </div>
+
+    </div>
+
+
+    <main class="app-container">
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="hero-section">
+
+            <div class="hero-left">
+
+                <div class="brand-logo">
+
+                    <div class="logo-icon">
+                        ✈
+                    </div>
+
+                    <div class="brand-text">
+                        <span>TRAVEXA</span>
+                        <small>AI TRIP PLANNER</small>
+                    </div>
+
+                </div>
+
+
+                <div class="badge">
+
+                    <span class="badge-dot"></span>
+
+                    Multi-Agent AI Travel Intelligence
+
+                </div>
+
+
+                <h1>
+                    Explore the World
+                    <span>with Travexa AI</span>
+                </h1>
+
+
+                <p>
+                    Your intelligent multi-agent travel assistant for flights,
+                    hotels, destinations and personalized itineraries — powered
+                    by LangGraph and generative AI.
+                </p>
+
+
+                <div class="hero-features">
+
+                    <div>
+                        <span class="feature-icon">✈</span>
+                        Flight Search
+                    </div>
+
+                    <div>
+                        <span class="feature-icon">⌂</span>
+                        Hotel Discovery
+                    </div>
+
+                    <div>
+                        <span class="feature-icon">✦</span>
+                        AI Itinerary
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 3D TRAVEL ORB
+            ========================== -->
+
+            <div class="hero-visual">
+
+                <div class="orb-scene" id="orbScene">
+
+                    <div class="orb-shadow"></div>
+
+                    <div class="orbit orbit-1">
+                        <span class="orbit-dot"></span>
+                    </div>
+
+                    <div class="orbit orbit-2">
+                        <span class="orbit-dot"></span>
+                    </div>
+
+                    <div class="orbit orbit-3"></div>
+
+
+                    <div class="travel-orb">
+
+                        <div class="orb-highlight"></div>
+
+                        <div class="globe-line globe-line-1"></div>
+                        <div class="globe-line globe-line-2"></div>
+                        <div class="globe-line globe-line-3"></div>
+
+                        <div class="globe-horizontal horizontal-1"></div>
+                        <div class="globe-horizontal horizontal-2"></div>
+
+                        <div class="orb-core">
+                            <span>AI</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="floating-plane">
+                        ✈
+                    </div>
+
+
+                    <div class="floating-card card-flight">
+                        <span>✈</span>
+
+                        <div>
+                            <small>SMART SEARCH</small>
+                            <strong>Flights</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="floating-card card-hotel">
+                        <span>⌂</span>
+
+                        <div>
+                            <small>DISCOVER</small>
+                            <strong>Hotels</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="floating-card card-route">
+                        <span>✦</span>
+
+                        <div>
+                            <small>AI POWERED</small>
+                            <strong>Itinerary</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PLANNER
+        ========================== -->
+
+        <section class="planner-card tilt-card" id="plannerCard">
+
+            <div class="card-glow"></div>
+
+            <div class="card-border-glow"></div>
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="section-label">
+                        ✦ TRAVEXA AI PLANNER
+                    </div>
+
+                    <h2>
+                        Where do you want to go?
+                    </h2>
+
+                    <p>
+                        Tell Travexa your destination, duration, budget,
+                        flight, hotel and sightseeing requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="status-pill">
+
+                    <span class="status-dot"></span>
+
+                    AI Online
+
+                </div>
+
+            </div>
+
+
+            <div class="input-wrapper">
+
+                <div class="input-icon">
+                    ✦
+                </div>
+
+                <textarea id="userInput"
+                    placeholder="Plan a complete 7 days England trip from Sri Lanka including flights, hotels and sightseeing under 3 lakhs..."></textarea>
+
+                <div class="textarea-glow"></div>
+
+            </div>
+
+
+            <div class="generate-area">
+
+                <span class="shortcut">
+                    Press Ctrl + Enter to generate
+                </span>
+
+
+                <button id="sendBtn" onclick="sendMessage()">
+
+                    <span id="btnText" class="button-content">
+                        <span class="button-sparkle">
+                            ✦
+                        </span>
+
+                        Generate AI Trip
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+                    </span>
+
+
+                    <span id="btnLoader" class="loader hidden"></span>
+
+                </button>
+
+            </div>
+
+
+            <div id="thinkingStatus" class="thinking-status hidden">
+
+                <div class="thinking-orb">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div>
+                    <strong>
+                        Travexa AI is planning your trip
+                    </strong>
+
+                    <p id="thinkingText">
+                        Analyzing your travel request...
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="quick-section">
+
+                <span class="quick-title">
+                    POPULAR TRIPS
+                </span>
+
+
+                <div class="quick-prompts">
+
+                    <button
+                        onclick="setPrompt('Plan a complete 7 days Japan trip from Sri Lanka including flights, hotels and sightseeing under 3 lakhs.')">
+                        <span>🇯🇵</span>
+                        Japan
+                    </button>
+
+
+                    <button
+                        onclick="setPrompt('Plan a 5 days Dubai trip from Sri Lanka with flights, hotels and sightseeing.')">
+                        <span>🇦🇪</span>
+                        Dubai
+                    </button>
+
+
+                    <button
+                        onclick="setPrompt('Plan a 7 days Thailand trip from Sri Lanka with budget hotels and sightseeing.')">
+                        <span>🇹🇭</span>
+                        Thailand
+                    </button>
+
+
+                    <button
+                        onclick="setPrompt('Plan a complete 7 days England trip from Sri Lanka flights, hotels and sightseeing under 3 lakhs.')">
+                        <span>🇬🇧</span>
+                        England
+                    </button>
+
+
+                    <button onclick="setPrompt('Give me all country flight info.')">
+                        <span>🌍</span>
+                        Global Flights
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RESULT
+        ========================== -->
+
+        <section id="resultSection" class="result-section hidden">
+
+            <div class="result-glow"></div>
+
+
+            <div class="result-header">
+
+                <div>
+
+                    <div class="section-label">
+                        ✦ TRAVEXA AI RESULT
+                    </div>
+
+                    <h2>
+                        Your Personalized Travel Plan
+                    </h2>
+
+                    <p id="threadInfo">
+                        Thread ID: -
+                    </p>
+
+                </div>
+
+
+                <div class="result-actions">
+
+                    <button class="copy-btn" onclick="copyResult()">
+                        Copy Plan
+                    </button>
+
+
+                    <button class="download-btn" onclick="downloadPDF()">
+                        Download PDF
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="pdfContent" class="pdf-content">
+
+                <div class="pdf-brand">
+                    TRAVEXA AI
+                </div>
+
+                <h1 class="pdf-title">
+                    AI Travel Plan
+                </h1>
+
+                <div id="resultBox" class="result-box"></div>
+
+            </div>
+
+        </section>
+
+
+        <section id="errorBox" class="error-box hidden"></section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <span class="footer-logo">
+                ✈
+            </span>
+
+            <span>
+                Travexa AI
+            </span>
+
+        </div>
+
+
+        <p>
+            Multi-Agent Travel Intelligence
+        </p>
+
+
+        <small>
+            FastAPI • LangGraph • Groq • PostgreSQL • Tavily • AviationStack
+        </small>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
