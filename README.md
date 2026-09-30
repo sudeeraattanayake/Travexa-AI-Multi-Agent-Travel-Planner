@@ -7,6 +7,8 @@
   <img src="https://img.shields.io/badge/OpenAI-API-412991?logo=openai&logoColor=white" alt="OpenAI">
   <img src="https://img.shields.io/badge/Tavily-Search-FF6B35" alt="Tavily">
   <img src="https://img.shields.io/badge/AviationStack-Flight_API-2563EB" alt="AviationStack">
+  <img src="https://img.shields.io/badge/MCP-Model_Context_Protocol-8B5CF6" alt="MCP">
+  <img src="https://img.shields.io/badge/OpenWeather-Weather_API-EB6E4B" alt="OpenWeather">
   <img src="https://img.shields.io/badge/FastAPI-Web_App-009688?logo=fastapi&logoColor=white" alt="FastAPI">
   <img src="https://img.shields.io/badge/PostgreSQL-Persistence-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL">
   <img src="https://img.shields.io/badge/AI-Multi--Agent_AI-blueviolet" alt="Multi-Agent AI">
@@ -18,8 +20,8 @@
 <p align="center">
   <strong>
     An end-to-end multi-agent AI travel planning application that searches flights,
-    researches hotels, creates personalized itineraries, and generates structured
-    travel plans through a LangGraph-powered workflow.
+    researches hotels, checks destination weather, creates personalized itineraries, and generates structured
+    travel plans through a LangGraph-powered workflow with Model Context Protocol (MCP) integrations.
   </strong>
 </p>
 
@@ -27,6 +29,7 @@
   🧳 <strong>User Travel Request</strong> →
   ✈️ <strong>Flight Agent</strong> →
   🏨 <strong>Hotel Agent</strong> →
+  🌤️ <strong>Weather Agent</strong> →
   🗺️ <strong>Itinerary Agent</strong> →
   🤖 <strong>Final Response Agent</strong>
 </p>
@@ -40,22 +43,21 @@
 
 ## 📌 Overview
 
-**Travexa AI** is an end-to-end multi-agent AI travel planning application built using **Python, LangGraph, LangChain, OpenAI, Tavily, AviationStack, FastAPI, PostgreSQL, HTML, CSS, and JavaScript**.
+**Travexa AI** is an end-to-end multi-agent AI travel planning application built using **Python, LangGraph, LangChain, OpenAI, Model Context Protocol (MCP), Tavily, AviationStack, OpenWeather, FastAPI, HTML, CSS, and JavaScript**.
 
 Users provide a natural-language travel request such as:
 
-> Plan a complete 7-day England trip from Sri Lanka including flights, hotels, sightseeing, and a budget under 300k in lkr.
+> Plan a complete 7-day England trip from Sri Lanka including flights, hotels, sightseeing, and a budget under LKR 300,000.
 
 Travexa AI processes the request through a specialized sequential workflow:
 
-1. **Flight Agent** retrieves relevant flight information.
-2. **Hotel Agent** searches for accommodation information.
-3. **Itinerary Agent** combines the user's request with flight and hotel information to build a practical itinerary.
-4. **Final Response Agent** creates a structured travel plan containing flights, hotels, daily activities, budget guidance, and recommendations.
+1. **Flight Agent** retrieves relevant aviation information through the AviationStack MCP integration.
+2. **Hotel Agent** searches for accommodation information through Tavily MCP.
+3. **Weather Agent** retrieves current destination weather and forecast information through a custom Weather MCP server backed by OpenWeather.
+4. **Itinerary Agent** combines the user's request with flight, hotel, and weather information to build a practical itinerary.
+5. **Final Response Agent** creates a structured travel plan containing flights, hotels, weather, daily activities, budget guidance, and recommendations.
 
 The application uses a **LangGraph `StateGraph`** to coordinate the travel-planning workflow.
-
-A PostgreSQL-backed **LangGraph `PostgresSaver`** maintains graph checkpoints using conversation-specific `thread_id` values.
 
 A custom **purple neon HTML, CSS, and JavaScript interface** provides a modern AI travel-planning experience with 3D-style visual elements, animated status indicators, quick prompts, Markdown-rendered results, copy controls, and PDF export.
 
@@ -66,16 +68,19 @@ A custom **purple neon HTML, CSS, and JavaScript interface** provides a modern A
 - ✈️ AI-powered travel planning.
 - 🤖 Multi-agent workflow built with LangGraph.
 - 🧭 Sequential specialized-agent execution.
-- ✈️ Flight information using AviationStack.
-- 🏨 Hotel research using Tavily.
+- 🔌 Model Context Protocol (MCP) integration.
+- ✈️ AviationStack MCP integration for flight information.
+- 🏨 Tavily MCP integration for hotel research.
+- 🌤️ Custom Weather MCP server using OpenWeather.
+- 🌦️ Current weather and forecast retrieval.
 - 🔎 External web information retrieval.
 - 🗺️ AI-generated personalized itineraries.
 - 📅 Day-by-day travel planning.
 - 💰 Budget-aware itinerary generation.
 - 🤖 OpenAI-powered itinerary generation.
 - ✨ AI-generated final travel responses.
-- 💾 PostgreSQL-backed LangGraph checkpoints.
 - 🧵 Conversation-specific thread identifiers.
+- 🔄 Native async agent and MCP execution.
 - 🌐 FastAPI web application.
 - 📡 REST API for travel-plan generation.
 - ❤️ Application health-check endpoint.
@@ -123,19 +128,49 @@ Travexa AI processes the request through the LangGraph workflow and presents the
 
 ### Flight Information
 
-The Flight Agent retrieves available flight information using the AviationStack-powered flight search tool.
+The Flight Agent retrieves aviation information through the AviationStack MCP integration.
 
 <p align="center">
-  <img src="assets/screenshots/flight-result.png" alt="Travexa AI flight information results" width="1000">
+  <img src="assets/screenshots/flight-result-1.png" alt="Travexa AI flight information result 1" width="1000">
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/flight-result-2.png" alt="Travexa AI flight information result 2" width="1000">
+</p>
+
+### Hotel Information
+
+The Hotel Agent researches accommodation options through Tavily MCP.
+
+<p align="center">
+  <img src="assets/screenshots/hotel-result-1.png" alt="Travexa AI hotel result 1" width="1000">
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/hotel-result-2.png" alt="Travexa AI hotel result 2" width="1000">
+</p>
+
+### Weather Information
+
+The Weather Agent retrieves destination weather information through the custom Weather MCP server backed by OpenWeather.
+
+<p align="center">
+  <img src="assets/screenshots/weather-result.png" alt="Travexa AI weather result" width="1000">
 </p>
 
 ### Day-by-Day Itinerary
 
-The Itinerary Agent combines the user's travel request with flight and hotel information to create a practical day-by-day travel itinerary.
+The Itinerary Agent combines the user's travel request with flight, hotel, and weather information to create a practical day-by-day travel itinerary.
 
 <p align="center">
-  <img src="assets/screenshots/itinerary.png" alt="Travexa AI generated day-by-day itinerary" width="1000">
+  <img src="assets/screenshots/day-by-day-itinerary.png" alt="Travexa AI generated day-by-day itinerary" width="1000">
 </p>
+
+### Example Itinerary PDF
+
+A generated Travexa AI itinerary PDF is included as a project demo:
+
+[📄 View Travexa AI Itinerary PDF](assets/pdf/travexa-ai-itinerary.pdf)
 
 ---
 
@@ -144,27 +179,25 @@ The Itinerary Agent combines the user's travel request with flight and hotel inf
 ```mermaid
 flowchart TD
     USER["🧳 User Travel Request"] --> UI["🎨 Travexa AI Web Interface"]
-
     UI --> API["🌐 FastAPI Application"]
-
     API --> GRAPH["🦜 LangGraph Travel Workflow"]
 
     GRAPH --> FLIGHT["✈️ Flight Agent"]
-    FLIGHT --> AVIATION["🌍 AviationStack API"]
+    FLIGHT --> AVIATION["🔌 AviationStack MCP"]
 
     FLIGHT --> HOTEL["🏨 Hotel Agent"]
-    HOTEL --> TAVILY["🔎 Tavily Search"]
+    HOTEL --> TAVILY["🔌 Tavily MCP"]
 
-    HOTEL --> ITINERARY["🗺️ Itinerary Agent"]
+    HOTEL --> WEATHER["🌤️ Weather Agent"]
+    WEATHER --> OPENWEATHER["🔌 Custom Weather MCP / OpenWeather"]
+
+    WEATHER --> ITINERARY["🗺️ Itinerary Agent"]
     ITINERARY --> OPENAI1["🤖 OpenAI"]
 
     ITINERARY --> FINAL["✨ Final Response Agent"]
     FINAL --> OPENAI2["🤖 OpenAI"]
 
     FINAL --> RESULT["📋 Personalized Travel Plan"]
-
-    GRAPH -. Checkpoints .-> POSTGRES["🐘 PostgreSQL"]
-
     RESULT --> API
     API --> UI
 ```
@@ -177,6 +210,8 @@ START
 ✈️ Flight Agent
   ↓
 🏨 Hotel Agent
+  ↓
+🌤️ Weather Agent
   ↓
 🗺️ Itinerary Agent
   ↓
@@ -197,7 +232,7 @@ The user enters a natural-language travel request through the Travexa AI web int
 
 Example:
 
-> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under 3 lakhs.
+> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under LKR 300,000.
 
 The frontend sends the request to:
 
@@ -209,7 +244,7 @@ Request structure:
 
 ```json
 {
-  "message": "Plan a 7-day England trip from Sri Lanka under 3 lakhs.",
+  "message": "Plan a 7-day England trip from Sri Lanka under LKR 300,000.",
   "thread_id": null
 }
 ```
@@ -272,13 +307,9 @@ The first graph node is:
 flight_agent
 ```
 
-It receives the original user query and calls:
+It receives the original user query and calls the AviationStack MCP integration through `aviation_mcp_call(...)`.
 
-```python
-search_flights(query)
-```
-
-The dedicated flight tool retrieves flight information using AviationStack.
+The MCP client connects the Flight Agent to the AviationStack MCP server.
 
 The result is stored in:
 
@@ -298,11 +329,7 @@ The Hotel Agent creates a hotel-search query:
 query = f"Best Hotels for {state['user_query']}"
 ```
 
-It calls:
-
-```python
-tavily_search(query)
-```
+It calls Tavily through the MCP client using `tavily_mcp_search(...)`.
 
 The returned accommodation information is stored in:
 
@@ -310,17 +337,41 @@ The returned accommodation information is stored in:
 hotel_results
 ```
 
+The state then continues to the Weather Agent.
+
+---
+
+### 6️⃣ Weather Agent Retrieves Destination Weather
+
+The Weather Agent extracts the destination from the user's travel request and uses the custom Weather MCP server.
+
+It calls:
+
+```python
+weather_mcp_search(city)
+forecast_mcp_search(city)
+```
+
+The custom MCP server retrieves current weather and forecast information from OpenWeather.
+
+The result is stored in:
+
+```python
+weather_results
+```
+
 The state then continues to the Itinerary Agent.
 
 ---
 
-### 6️⃣ Itinerary Agent Creates the Travel Plan
+### 7️⃣ Itinerary Agent Creates the Travel Plan
 
 The Itinerary Agent receives:
 
 - Original travel request.
 - Flight results.
 - Hotel results.
+- Weather results.
 
 The agent constructs a prompt containing the accumulated travel information.
 
@@ -343,7 +394,7 @@ itinerary
 
 ---
 
-### 7️⃣ Final Response Agent Creates the Final Answer
+### 8️⃣ Final Response Agent Creates the Final Answer
 
 The Final Response Agent receives:
 
@@ -354,6 +405,8 @@ Flight Results
 +
 Hotel Results
 +
+Weather Results
++
 Generated Itinerary
 ```
 
@@ -363,16 +416,17 @@ It produces a structured response containing:
 1. Trip Summary
 2. Flight Information
 3. Hotel Suggestions
-4. Day-by-Day Itinerary
-5. Estimated Budget
-6. Final Recommendations
+4. Weather Information
+5. Day-by-Day Itinerary
+6. Estimated Budget
+7. Final Recommendations
 ```
 
 The final prompt also tells the model to mention when live flight information does not contain ticket pricing.
 
 ---
 
-### 8️⃣ FastAPI Returns the Result
+### 9️⃣ FastAPI Returns the Result
 
 The API returns structured JSON:
 
@@ -383,8 +437,9 @@ The API returns structured JSON:
   "answer": "Generated final travel plan...",
   "flight_results": "Flight information...",
   "hotel_results": "Hotel information...",
+  "weather_results": "Weather information...",
   "itinerary": "Generated itinerary...",
-  "llm_calls": 4
+  "llm_calls": 5
 }
 ```
 
@@ -396,15 +451,17 @@ The browser renders the final `answer` inside the Travexa AI result workspace.
 
 | Component | Type | Responsibility |
 | --- | --- | --- |
-| ✈️ Flight Agent | Travel-data node | Retrieve relevant flight information |
-| 🏨 Hotel Agent | Research node | Search for accommodation information |
+| ✈️ Flight Agent | Travel-data node | Retrieve aviation information through AviationStack MCP |
+| 🏨 Hotel Agent | Research node | Search for accommodation information through Tavily MCP |
+| 🌤️ Weather Agent | Weather-data node | Retrieve current weather and forecast through the custom Weather MCP server |
 | 🗺️ Itinerary Agent | LLM node | Build a practical, budget-aware itinerary |
 | 🤖 Final Response Agent | LLM node | Produce the final structured travel plan |
-| ✈️ `search_flights` | External API tool | Retrieve flight information through AviationStack |
-| 🔎 `tavily_search` | Search tool | Retrieve hotel and travel information |
-| 🐘 `PostgresSaver` | Checkpoint store | Persist LangGraph checkpoints by thread |
+| 🔌 `aviation_mcp_call` | MCP tool wrapper | Call AviationStack MCP tools |
+| 🔎 `tavily_mcp_search` | MCP tool wrapper | Retrieve hotel and travel information |
+| 🌦️ `weather_mcp_search` | MCP tool wrapper | Retrieve current weather |
+| 🌦️ `forecast_mcp_search` | MCP tool wrapper | Retrieve destination forecast |
 
-The current implementation uses four specialized sequential graph nodes.
+The current implementation uses five specialized sequential graph nodes.
 
 ---
 
@@ -418,6 +475,7 @@ class TravelState(TypedDict):
     user_query: str
     flight_results: str
     hotel_results: str
+    weather_results: str
     itinerary: str
     llm_calls: int
 ```
@@ -428,6 +486,7 @@ class TravelState(TypedDict):
 | `user_query` | Store the original travel request |
 | `flight_results` | Store flight-search information |
 | `hotel_results` | Store hotel-search information |
+| `weather_results` | Store destination weather and forecast information |
 | `itinerary` | Store the generated travel itinerary |
 | `llm_calls` | Maintain the workflow's current processing counter |
 
@@ -444,22 +503,22 @@ graph = StateGraph(TravelState)
 
 graph.add_node("flight_agent", flight_agent)
 graph.add_node("hotel_agent", hotel_agent)
+graph.add_node("weather_agent", weather_agent)
 graph.add_node("itinerary_agent", itinerary_agent)
 graph.add_node("final_agent", final_agent)
 
 graph.add_edge(START, "flight_agent")
 graph.add_edge("flight_agent", "hotel_agent")
-graph.add_edge("hotel_agent", "itinerary_agent")
+graph.add_edge("hotel_agent", "weather_agent")
+graph.add_edge("weather_agent", "itinerary_agent")
 graph.add_edge("itinerary_agent", "final_agent")
 graph.add_edge("final_agent", END)
 ```
 
-The graph is compiled with PostgreSQL checkpoint persistence:
+The graph is compiled for asynchronous execution:
 
 ```python
-travel_graph = graph.compile(
-    checkpointer=checkpointer
-)
+travel_graph = graph.compile()
 ```
 
 This keeps each stage of travel planning separated while allowing information to flow through one shared state.
@@ -468,53 +527,63 @@ This keeps each stage of travel planning separated while allowing information to
 
 ## 🌐 Travel Tools
 
-### ✈️ AviationStack Flight Search
+### 🔌 Model Context Protocol (MCP)
 
-Travexa AI imports its flight-search implementation from:
+Travexa AI uses `MultiServerMCPClient` to connect specialized agents to external MCP servers.
+
+The MCP layer currently includes:
+
+- **Tavily MCP** for hotel and travel research.
+- **AviationStack MCP** for aviation information.
+- **Custom Weather MCP** for current weather and forecast information using OpenWeather.
+
+### ✈️ AviationStack MCP
+
+The Flight Agent uses:
 
 ```python
-from tools.flight_tool import search_flights
+aviation_mcp_call(tool_name, tool_args)
 ```
 
-The Flight Agent calls:
-
-```python
-flight_data = search_flights(query)
-```
-
-The flight tool processes travel-location information and retrieves available flight information through AviationStack.
-
-The flight-search implementation also supports location-to-airport resolution for travel queries.
+The available AviationStack MCP tools depend on the connected AviationStack account and subscription. Some provider functions may return subscription restrictions even when the MCP server connection itself is working.
 
 Flight API results may not always contain live ticket prices.
 
 ---
 
-### 🔎 Tavily Hotel Research
+### 🔎 Tavily MCP Hotel Research
 
-Hotel information is retrieved through:
-
-```python
-from tools.tavily_tool import tavily_search
-```
-
-The Hotel Agent builds a search query:
+Hotel and travel information is retrieved through:
 
 ```python
-query = f"Best Hotels for {state['user_query']}"
+tavily_mcp_search(query)
 ```
 
-and calls:
-
-```python
-hotel_results = tavily_search(query)
-```
-
-The search results become part of the context supplied to the Itinerary Agent and Final Response Agent.
+The search results become part of the context supplied to the later travel-planning agents.
 
 ---
 
-### 🤖 OpenAI Travel Planning
+### 🌤️ Custom Weather MCP
+
+Travexa AI includes `custom_weather_mcp_server.py`, which exposes:
+
+```text
+get_current_weather
+get_forecast
+```
+
+The MCP client provides:
+
+```python
+weather_mcp_search(city)
+forecast_mcp_search(city)
+```
+
+Weather data is retrieved from OpenWeather and supplied to the Weather Agent and later itinerary generation.
+
+---
+
+## 🤖 OpenAI Travel Planning
 
 The Itinerary Agent and Final Response Agent use a `ChatOpenAI` instance through `langchain-openai`.
 
@@ -531,61 +600,7 @@ The exact model configured in `backend.py` must be available to the OpenAI API a
 
 ---
 
-## 💾 PostgreSQL Persistence
 
-Travexa AI uses PostgreSQL as the backing store for LangGraph checkpoints.
-
-The connection URL is loaded from the environment:
-
-```python
-database_url = os.getenv("DATABASE_URL")
-```
-
-When `sslmode` is not already present, the application adds:
-
-```text
-sslmode=require
-```
-
-The PostgreSQL connection is created using Psycopg:
-
-```python
-_conn = psycopg.connect(
-    DATABASE_URL,
-    autocommit=True,
-    row_factory=dict_row
-)
-```
-
-LangGraph persistence is configured using:
-
-```python
-checkpointer = PostgresSaver(_conn)
-
-checkpointer.setup()
-```
-
-The checkpointer is attached when the graph is compiled:
-
-```python
-travel_graph = graph.compile(
-    checkpointer=checkpointer
-)
-```
-
-Each graph invocation receives:
-
-```python
-config = {
-    "configurable": {
-        "thread_id": thread_id
-    }
-}
-```
-
-This associates LangGraph checkpoints with the selected travel-planning thread.
-
----
 
 ## 🛠️ Technologies Used
 
@@ -596,13 +611,13 @@ This associates LangGraph checkpoints with the selected travel-planning thread.
 | 🔀 LangGraph | Multi-agent travel workflow |
 | 🤖 OpenAI | Itinerary and final-response generation |
 | 🔗 langchain-openai | LangChain integration with OpenAI |
-| ✈️ AviationStack | Flight-information API |
-| 🔎 Tavily | Hotel and travel research |
+| 🔌 MCP | Model Context Protocol integrations |
+| ✈️ AviationStack | Aviation information through MCP |
+| 🔎 Tavily | Hotel and travel research through MCP |
+| 🌤️ OpenWeather | Current weather and forecast data |
 | 🌐 FastAPI | Backend API and web application |
 | ⚡ Uvicorn | ASGI application server |
 | 📄 Jinja2 | Frontend template rendering |
-| 🐘 PostgreSQL | LangGraph checkpoint persistence |
-| 🔗 Psycopg | PostgreSQL Python driver |
 | 🔐 python-dotenv | Environment-variable loading |
 | 🔒 certifi | Certificate configuration |
 | 🌍 airportsdata | Airport metadata |
@@ -628,13 +643,13 @@ langchain
 langchain-core
 langchain-openai
 langgraph
-langgraph-checkpoint-postgres
-psycopg
 requests
 certifi
 airportsdata
 pycountry
 tavily-python
+langchain-mcp-adapters
+mcp
 ```
 
 Install the exact project dependencies using `requirements.txt`.
@@ -647,12 +662,19 @@ Install the exact project dependencies using `requirements.txt`.
 Travexa-AI-Multi-Agent-Travel-Planner/
 │
 ├── assets/
+│   ├── pdf/
+│   │   └── travexa-ai-itinerary.pdf
+│   │
 │   └── screenshots/
+│       ├── day-by-day-itinerary.png
+│       ├── flight-result-1.png
+│       ├── flight-result-2.png
 │       ├── home.png
+│       ├── hotel-result-1.png
+│       ├── hotel-result-2.png
 │       ├── travel-request.png
 │       ├── travel-result.png
-│       ├── flight-result.png
-│       └── itinerary.png
+│       └── weather-result.png
 │
 ├── static/
 │   ├── script.js
@@ -668,9 +690,10 @@ Travexa-AI-Multi-Agent-Travel-Planner/
 │
 ├── app.py
 ├── backend.py
+├── custom_weather_mcp_server.py
+├── mcp_client.py
 ├── README.md
 ├── requirements.txt
-├── test.py
 ├── .gitignore
 └── .env
 ```
@@ -678,19 +701,19 @@ Travexa-AI-Multi-Agent-Travel-Planner/
 | Path | Purpose |
 | --- | --- |
 | `app.py` | FastAPI application, frontend route, travel API, and health endpoint |
-| `backend.py` | LangGraph agents, workflow, OpenAI integration, and PostgreSQL persistence |
-| `tools/flight_tool.py` | Flight-search and location-resolution implementation |
-| `tools/tavily_tool.py` | Tavily-based travel and hotel search |
+| `backend.py` | LangGraph agents, workflow, OpenAI integration, and async execution |
+| `mcp_client.py` | Multi-server MCP client for Tavily, AviationStack, and Weather MCP |
+| `custom_weather_mcp_server.py` | Custom OpenWeather-backed MCP server |
 | `templates/index.html` | Travexa AI frontend markup |
-| `static/style.css` | Purple-neon interface and animations |
-| `static/script.js` | Frontend interaction and API requests |
-| `assets/screenshots/` | README interface screenshots |
+| `static/style.css` | Purple-neon interface and MCP UI enhancements |
+| `static/script.js` | Frontend interaction, MCP-aware activity states, and API requests |
+| `assets/screenshots/` | README interface and agent-result screenshots |
+| `assets/pdf/` | Example generated Travexa AI itinerary PDF |
 | `requirements.txt` | Python dependencies |
-| `test.py` | Project testing/development file |
 | `.gitignore` | Files excluded from version control |
 | `.env` | Local API credentials and configuration |
 
-The `.env` file and `travexa-env/` virtual environment should remain excluded from Git.
+The `.env`, local test files, and `travexa-env/` virtual environment should remain excluded from Git.
 
 ---
 
@@ -742,10 +765,9 @@ OPENAI_API_KEY=your_openai_api_key_here
 
 TAVILY_API_KEY=your_tavily_api_key_here
 
-AVIATIONSTACK_API_KEY=your_aviationstack_api_key_here
-AVIATIONSTACK_BASE_URL=https://api.aviationstack.com/v1
+AVIATION_STACK_API_KEY=your_aviationstack_api_key_here
 
-DATABASE_URL=your_postgresql_connection_url_here
+OPENWEATHER_API_KEY=your_openweather_api_key_here
 
 DEFAULT_ORIGIN_IATA=CMB
 ```
@@ -800,9 +822,8 @@ load_dotenv()
 | --- | --- |
 | `OPENAI_API_KEY` | Authenticate OpenAI model requests |
 | `TAVILY_API_KEY` | Authenticate Tavily search requests |
-| `AVIATIONSTACK_API_KEY` | Authenticate AviationStack flight requests |
-| `AVIATIONSTACK_BASE_URL` | Configure the AviationStack API base URL |
-| `DATABASE_URL` | Connect LangGraph to PostgreSQL |
+| `AVIATION_STACK_API_KEY` | Authenticate AviationStack MCP requests |
+| `OPENWEATHER_API_KEY` | Authenticate OpenWeather requests used by the custom Weather MCP server |
 | `DEFAULT_ORIGIN_IATA` | Configure a default departure airport where needed |
 
 Example:
@@ -810,9 +831,8 @@ Example:
 ```dotenv
 OPENAI_API_KEY=your_key_here
 TAVILY_API_KEY=your_key_here
-AVIATIONSTACK_API_KEY=your_key_here
-AVIATIONSTACK_BASE_URL=https://api.aviationstack.com/v1
-DATABASE_URL=postgresql://username:password@host/database?sslmode=require
+AVIATION_STACK_API_KEY=your_key_here
+OPENWEATHER_API_KEY=your_key_here
 DEFAULT_ORIGIN_IATA=CMB
 ```
 
@@ -842,7 +862,7 @@ Example request:
 
 ```json
 {
-  "message": "Plan a 7-day Japan trip from Sri Lanka under 3 lakhs.",
+  "message": "Plan a 7-day Japan trip from Sri Lanka under LKR 300,000.",
   "thread_id": null
 }
 ```
@@ -856,8 +876,9 @@ Successful response structure:
   "answer": "Final AI travel plan...",
   "flight_results": "Flight information...",
   "hotel_results": "Hotel information...",
+  "weather_results": "Weather information...",
   "itinerary": "Generated itinerary...",
-  "llm_calls": 4
+  "llm_calls": 5
 }
 ```
 
@@ -903,7 +924,7 @@ The interface includes:
 The central planning interface includes:
 
 - Natural-language travel input.
-- AI Online indicator.
+- MCP Powered indicator.
 - Generate AI Trip button.
 - Quick travel prompts.
 - Animated processing status.
@@ -917,12 +938,12 @@ While the backend is processing a request, the frontend cycles through messages 
 
 ```text
 Analyzing your travel request...
-Searching for the best travel options...
-Checking flights and destinations...
-Researching hotels and accommodation...
-Building your personalized itinerary...
-Optimizing your travel plan...
-Preparing your Travexa AI experience...
+Connecting to Travexa MCP services...
+Flight Agent is checking aviation data...
+Hotel Agent is searching with Tavily MCP...
+Weather Agent is checking live weather...
+Itinerary Agent is building your trip...
+Final Agent is preparing your travel plan...
 ```
 
 These labels represent frontend activity states while Travexa AI processes the request.
@@ -959,11 +980,11 @@ Travexa-AI-Travel-Plan.pdf
 
 ### 🇬🇧 England
 
-> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under 300k in lkr.
+> Plan a complete 7-day England trip from Sri Lanka including flights, hotels and sightseeing under LKR 300,000.
 
 ### 🇯🇵 Japan
 
-> Plan a 7-day Japan trip from Sri Lanka under 300k rupees including flights, hotels, food and sightseeing.
+> Plan a 7-day Japan trip from Sri Lanka under LKR 300,000 including flights, hotels, food and sightseeing.
 
 ### 🇦🇪 Dubai
 
@@ -996,8 +1017,8 @@ Possible failures include:
 - Missing OpenAI API credentials.
 - Missing Tavily API credentials.
 - Missing AviationStack credentials.
-- Invalid PostgreSQL connection information.
-- PostgreSQL SSL configuration problems.
+- Missing OpenWeather credentials.
+- MCP server or transport failures.
 - External API failures.
 - Provider rate or usage limits.
 - Network errors.
@@ -1041,10 +1062,11 @@ traceback.print_exc()
 - Travexa AI does not currently book hotels.
 - Generated budgets are planning estimates rather than guaranteed prices.
 - Currency rates, hotel prices, and travel costs can change.
-- External API availability can affect travel-plan generation.
+- External API and MCP server availability can affect travel-plan generation.
+- Some AviationStack MCP functions depend on the connected subscription plan.
 - The current graph follows a fixed sequential workflow.
 - The application does not currently provide user authentication.
-- `thread_id` separates LangGraph checkpoint threads but is not an authentication mechanism.
+- `thread_id` identifies frontend travel sessions but is not an authentication mechanism.
 - AI-generated travel plans should be verified before important travel decisions.
 - Visa, immigration, health, and entry requirements should be checked through appropriate official sources.
 
@@ -1058,11 +1080,12 @@ Public production deployment would require additional authentication, authorizat
 - Design a multi-agent workflow using LangGraph.
 - Separate travel-planning responsibilities into specialized agents.
 - Integrate external flight information.
-- Retrieve flight data using AviationStack.
-- Research hotel information using Tavily.
+- Retrieve aviation data through AviationStack MCP.
+- Research hotel information through Tavily MCP.
+- Build a custom Weather MCP server using OpenWeather.
+- Add destination weather and forecast information to the agent workflow.
 - Generate personalized itineraries using an LLM.
 - Generate structured final travel plans.
-- Maintain graph checkpoints using PostgreSQL.
 - Build a FastAPI application around the AI workflow.
 - Connect the backend to an interactive JavaScript frontend.
 - Create a modern AI-focused travel interface.
@@ -1090,8 +1113,8 @@ Public production deployment would require additional authentication, authorizat
 - Shared graph state.
 - Sequential graph execution.
 - Message accumulation.
-- Persistent checkpoints.
-- Thread-based graph configuration.
+- Asynchronous graph execution.
+- MCP-connected agent workflows.
 
 ### 🤖 Large Language Models
 
@@ -1102,27 +1125,20 @@ Public production deployment would require additional authentication, authorizat
 - Final-answer synthesis.
 - Combining external information with LLM generation.
 
-### ✈️ Travel APIs
+### ✈️ Travel APIs and MCP
 
-- Flight-data retrieval.
-- Airport resolution.
-- Country and city processing.
-- AviationStack integration.
-- Travel-search integration.
+- Model Context Protocol integration.
+- Multi-server MCP clients.
+- Flight-data retrieval through AviationStack MCP.
+- Tavily MCP search integration.
+- Custom Weather MCP server development.
+- OpenWeather current-weather and forecast integration.
 
 ### 🔎 Web Search
 
-- Tavily search integration.
+- Tavily MCP search integration.
 - Hotel research.
 - External travel-information retrieval.
-
-### 🐘 PostgreSQL
-
-- PostgreSQL connections.
-- Psycopg.
-- SSL database connections.
-- LangGraph `PostgresSaver`.
-- Persistent graph checkpoints.
 
 ### 🌐 FastAPI
 
@@ -1154,7 +1170,7 @@ Public production deployment would require additional authentication, authorizat
 - [ ] Add real-time flight-price providers.
 - [ ] Add flight-booking links.
 - [ ] Add hotel-booking links.
-- [ ] Add destination weather information.
+- [x] Add destination weather information through a custom Weather MCP server.
 - [ ] Add interactive maps.
 - [ ] Add route visualization.
 - [ ] Add restaurant recommendations.
@@ -1212,6 +1228,10 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Local test files
+test.py
+mcp_client_test.py
+
 # Logs
 *.log
 ```
@@ -1221,8 +1241,8 @@ Never commit:
 ```text
 OPENAI_API_KEY
 TAVILY_API_KEY
-AVIATIONSTACK_API_KEY
-DATABASE_URL
+AVIATION_STACK_API_KEY
+OPENWEATHER_API_KEY
 ```
 
 If a secret has already been committed, adding `.env` to `.gitignore` does not remove it from Git history. Revoke the exposed credential and replace it.
@@ -1233,23 +1253,23 @@ If a secret has already been committed, adding `.env` to `.gitignore` does not r
 
 ### 🤖 Multi-Agent Travel Planning
 
-Travexa AI separates the travel-planning process into specialized LangGraph nodes for flights, hotels, itinerary generation, and final-response synthesis.
+Travexa AI separates the travel-planning process into specialized LangGraph nodes for flights, hotels, weather, itinerary generation, and final-response synthesis.
 
 ### ✈️ Flight Information Integration
 
-AviationStack connects the travel workflow to external flight information.
+AviationStack MCP connects the Flight Agent to external aviation information.
 
 ### 🏨 AI-Assisted Hotel Research
 
-Tavily provides external hotel and destination information for the Hotel Agent.
+Tavily MCP provides external hotel and destination information for the Hotel Agent.
+
+### 🌤️ Weather Intelligence
+
+A custom Weather MCP server uses OpenWeather to provide current conditions and forecast information to the travel workflow.
 
 ### 🗺️ Personalized Itinerary Generation
 
-The Itinerary Agent combines the original travel request with retrieved flight and hotel information to create a practical travel plan.
-
-### 🐘 Persistent LangGraph State
-
-PostgreSQL-backed `PostgresSaver` provides graph checkpoint persistence using conversation-specific thread identifiers.
+The Itinerary Agent combines the original travel request with retrieved flight, hotel, and weather information to create a practical travel plan.
 
 ### 🌐 Full-Stack AI Application
 
@@ -1298,7 +1318,7 @@ If you find this project useful:
 
 <p align="center">
   <strong>
-    Built with 🐍 Python + 🦜 LangGraph + 🤖 OpenAI + ✈️ AviationStack + 🔎 Tavily + 🐘 PostgreSQL + 🌐 FastAPI
+    Built with 🐍 Python + 🦜 LangGraph + 🔌 MCP + 🤖 OpenAI + ✈️ AviationStack + 🔎 Tavily + 🌤️ OpenWeather + 🌐 FastAPI
   </strong>
 </p>
 
