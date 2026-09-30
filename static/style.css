@@ -2425,3 +2425,328 @@ footer small {
     }
 
 }
+
+/* =========================
+   TRAVEXA MCP UI UPGRADE
+========================= */
+
+/* MCP badge enhancement */
+
+.badge {
+    box-shadow:
+        0 0 20px rgba(168, 85, 247, 0.08),
+        inset 0 0 15px rgba(168, 85, 247, 0.03);
+}
+
+.badge-dot {
+    position: relative;
+}
+
+.badge-dot::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border: 1px solid rgba(192, 132, 252, 0.35);
+    border-radius: 50%;
+    animation: mcpPulse 2s ease-out infinite;
+}
+
+
+/* =========================
+   HERO FEATURES
+========================= */
+
+.hero-features div {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.hero-features div:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(168, 85, 247, 0.32);
+
+    background:
+        rgba(126, 34, 206, 0.11);
+
+    box-shadow:
+        0 8px 25px rgba(126, 34, 206, 0.10);
+}
+
+.hero-features div::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 45%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(216, 180, 254, 0.06),
+            transparent);
+
+    transition:
+        left 0.55s ease;
+}
+
+.hero-features div:hover::before {
+    left: 120%;
+}
+
+
+/* =========================
+   MCP AGENT CARDS
+========================= */
+
+.floating-card {
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.floating-card:hover {
+    border-color:
+        rgba(192, 132, 252, 0.38);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.38),
+        0 0 30px rgba(147, 51, 234, 0.15);
+}
+
+.floating-card small {
+    color: #8b7a99;
+    white-space: nowrap;
+}
+
+.floating-card strong {
+    white-space: nowrap;
+}
+
+
+/* AviationStack MCP */
+
+.card-flight>span {
+    color: #e9d5ff;
+
+    box-shadow:
+        inset 0 0 15px rgba(168, 85, 247, 0.08),
+        0 0 15px rgba(168, 85, 247, 0.08);
+}
+
+
+/* Tavily MCP */
+
+.card-hotel>span {
+    color: #d8b4fe;
+
+    box-shadow:
+        inset 0 0 15px rgba(192, 38, 211, 0.08),
+        0 0 15px rgba(192, 38, 211, 0.08);
+}
+
+
+/* Weather MCP */
+
+.card-route>span {
+    color: #c4b5fd;
+
+    box-shadow:
+        inset 0 0 15px rgba(139, 92, 246, 0.08),
+        0 0 15px rgba(139, 92, 246, 0.08);
+}
+
+
+/* =========================
+   MCP CORE
+========================= */
+
+.orb-core {
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.orb-core:hover {
+    border-color:
+        rgba(216, 180, 254, 0.55);
+
+    box-shadow:
+        0 0 30px rgba(192, 38, 211, 0.38),
+        0 0 60px rgba(147, 51, 234, 0.20);
+}
+
+
+/* =========================
+   MCP STATUS
+========================= */
+
+.status-pill {
+    position: relative;
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 0 15px rgba(168, 85, 247, 0.04),
+        0 0 20px rgba(147, 51, 234, 0.05);
+}
+
+.status-pill::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -80%;
+
+    width: 40%;
+    height: 100%;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            rgba(216, 180, 254, 0.10),
+            transparent);
+
+    animation:
+        mcpStatusScan 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   THINKING / AGENT STATUS
+========================= */
+
+.thinking-status {
+    position: relative;
+    overflow: hidden;
+}
+
+.thinking-status::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 30%;
+    height: 1px;
+
+    background:
+        linear-gradient(90deg,
+            transparent,
+            #a855f7,
+            #d946ef,
+            transparent);
+
+    box-shadow:
+        0 0 12px rgba(168, 85, 247, 0.75);
+
+    animation:
+        agentProgress 2.4s linear infinite;
+}
+
+
+/* =========================
+   MCP ANIMATIONS
+========================= */
+
+@keyframes mcpPulse {
+
+    0% {
+        opacity: 0.8;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+}
+
+
+@keyframes mcpStatusScan {
+
+    0% {
+        left: -80%;
+    }
+
+    50%,
+    100% {
+        left: 140%;
+    }
+}
+
+
+@keyframes agentProgress {
+
+    0% {
+        left: -35%;
+    }
+
+    100% {
+        left: 105%;
+    }
+}
+
+
+/* =========================
+   MCP TABLET
+========================= */
+
+@media (max-width: 950px) {
+
+    .hero-features {
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
+
+
+/* =========================
+   MCP MOBILE
+========================= */
+
+@media (max-width: 760px) {
+
+    .badge {
+        font-size: 0.68rem;
+    }
+
+    .floating-card small {
+        font-size: 0.45rem;
+    }
+
+    .floating-card strong {
+        font-size: 0.72rem;
+    }
+
+}
+
+
+/* =========================
+   MCP SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .hero-features div {
+        flex:
+            1 1 calc(50% - 8px);
+
+        justify-content: center;
+    }
+
+}

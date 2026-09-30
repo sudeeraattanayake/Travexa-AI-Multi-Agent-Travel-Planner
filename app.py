@@ -10,7 +10,9 @@ from pydantic import BaseModel
 
 from backend import run_travel_agent
 
+
 BASE_DIR = Path(__file__).resolve().parent
+
 
 app = FastAPI(
     title="Travexa AI",
@@ -18,11 +20,15 @@ app = FastAPI(
     version="1.0.0"
 )
 
+
 app.mount(
     "/static",
-    StaticFiles(directory=str(BASE_DIR / "static")),
+    StaticFiles(
+        directory=str(BASE_DIR / "static")
+    ),
     name="static"
 )
+
 
 templates = Jinja2Templates(
     directory=str(BASE_DIR / "templates")
@@ -34,8 +40,13 @@ class TravelRequest(BaseModel):
     thread_id: str | None = None
 
 
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+@app.get(
+    "/",
+    response_class=HTMLResponse
+)
+async def home(
+    request: Request
+):
     return templates.TemplateResponse(
         request=request,
         name="index.html",
@@ -44,9 +55,13 @@ async def home(request: Request):
 
 
 @app.post("/api/travel")
-async def travel_planner(request_data: TravelRequest):
+async def travel_planner(
+    request_data: TravelRequest
+):
     try:
-        user_message = request_data.message.strip()
+        user_message = (
+            request_data.message.strip()
+        )
 
         if not user_message:
             return JSONResponse(
@@ -57,7 +72,8 @@ async def travel_planner(request_data: TravelRequest):
                 }
             )
 
-        result = run_travel_agent(
+        # Run async LangGraph travel agent
+        result = await run_travel_agent(
             user_input=user_message,
             thread_id=request_data.thread_id
         )
@@ -67,15 +83,30 @@ async def travel_planner(request_data: TravelRequest):
                 "success": True,
                 "thread_id": result["thread_id"],
                 "answer": result["answer"],
-                "flight_results": result["flight_results"],
-                "hotel_results": result["hotel_results"],
-                "itinerary": result["itinerary"],
-                "llm_calls": result["llm_calls"],
+                "flight_results": result[
+                    "flight_results"
+                ],
+                "hotel_results": result[
+                    "hotel_results"
+                ],
+                "weather_results": result[
+                    "weather_results"
+                ],
+                "itinerary": result[
+                    "itinerary"
+                ],
+                "llm_calls": result[
+                    "llm_calls"
+                ],
             }
         )
 
     except Exception as e:
-        print("ERROR:", e)
+        print(
+            f"ERROR: {type(e).__name__}: {e}",
+            flush=True
+        )
+
         traceback.print_exc()
 
         return JSONResponse(
@@ -91,13 +122,18 @@ async def travel_planner(request_data: TravelRequest):
 async def health_check():
     return {
         "status": "ok",
-        "message": "AI Travel Planner API is running"
+        "message": (
+            "Travexa AI Travel Planner API "
+            "is running"
+        )
     }
 
 
 @app.get("/favicon.ico")
 async def favicon():
-    return JSONResponse(content={})
+    return JSONResponse(
+        content={}
+    )
 
 
 if __name__ == "__main__":

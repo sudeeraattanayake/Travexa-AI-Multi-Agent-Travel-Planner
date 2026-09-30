@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Travexa AI - Multi-Agent AI Travel Planner">
+    <meta name="description" content="Travexa AI - Multi-Agent AI Travel Planner powered by LangGraph and MCP">
 
     <title>Travexa AI Trip Planner</title>
 
@@ -72,9 +72,7 @@
                 <div class="brand-logo">
 
                     <div class="logo-icon">
-
                         ✈
-
                     </div>
 
                     <div class="brand-text">
@@ -92,7 +90,7 @@
 
                     <span class="badge-dot"></span>
 
-                    Multi-Agent AI Travel Intelligence
+                    Multi-Agent AI + MCP Travel Intelligence
 
                 </div>
 
@@ -109,10 +107,8 @@
                 <p>
 
                     Your intelligent multi-agent travel assistant for flights,
-
-                    hotels, destinations and personalized itineraries — powered
-
-                    by LangGraph and generative AI.
+                    hotels, live weather and personalized itineraries — powered
+                    by LangGraph, Model Context Protocol and generative AI.
 
                 </p>
 
@@ -123,7 +119,7 @@
 
                         <span class="feature-icon">✈</span>
 
-                        Flight Search
+                        Flight Intelligence
 
                     </div>
 
@@ -132,6 +128,14 @@
                         <span class="feature-icon">⌂</span>
 
                         Hotel Discovery
+
+                    </div>
+
+                    <div>
+
+                        <span class="feature-icon">☁</span>
+
+                        Live Weather
 
                     </div>
 
@@ -158,17 +162,20 @@
 
                     <div class="orb-shadow"></div>
 
+
                     <div class="orbit orbit-1">
 
                         <span class="orbit-dot"></span>
 
                     </div>
 
+
                     <div class="orbit orbit-2">
 
                         <span class="orbit-dot"></span>
 
                     </div>
+
 
                     <div class="orbit orbit-3"></div>
 
@@ -197,9 +204,7 @@
 
 
                     <div class="floating-plane">
-
                         ✈
-
                     </div>
 
 
@@ -209,9 +214,9 @@
 
                         <div>
 
-                            <small>SMART SEARCH</small>
+                            <small>AVIATIONSTACK MCP</small>
 
-                            <strong>Flights</strong>
+                            <strong>Flight Agent</strong>
 
                         </div>
 
@@ -224,9 +229,9 @@
 
                         <div>
 
-                            <small>DISCOVER</small>
+                            <small>TAVILY MCP</small>
 
-                            <strong>Hotels</strong>
+                            <strong>Hotel Agent</strong>
 
                         </div>
 
@@ -235,13 +240,13 @@
 
                     <div class="floating-card card-route">
 
-                        <span>✦</span>
+                        <span>☁</span>
 
                         <div>
 
-                            <small>AI POWERED</small>
+                            <small>WEATHER MCP</small>
 
-                            <strong>Itinerary</strong>
+                            <strong>Weather Agent</strong>
 
                         </div>
 
@@ -275,16 +280,17 @@
 
                     </div>
 
+
                     <h2>
 
                         Where do you want to go?
 
                     </h2>
 
+
                     <p>
 
                         Tell Travexa your destination, duration, budget,
-
                         flight, hotel and sightseeing requirements.
 
                     </p>
@@ -296,7 +302,7 @@
 
                     <span class="status-dot"></span>
 
-                    AI Online
+                    MCP Powered
 
                 </div>
 
@@ -306,10 +312,9 @@
             <div class="input-wrapper">
 
                 <div class="input-icon">
-
                     ✦
-
                 </div>
+
 
                 <textarea id="userInput"
                     placeholder="Plan a complete 7 days England trip from Sri Lanka including flights, hotels and sightseeing under LKR 300,000..."></textarea>
@@ -333,17 +338,13 @@
                     <span id="btnText" class="button-content">
 
                         <span class="button-sparkle">
-
                             ✦
-
                         </span>
 
                         Generate AI Trip
 
                         <span class="button-arrow">
-
                             →
-
                         </span>
 
                     </span>
@@ -368,6 +369,7 @@
 
                 </div>
 
+
                 <div>
 
                     <strong>
@@ -375,6 +377,7 @@
                         Travexa AI is planning your trip
 
                     </strong>
+
 
                     <p id="thinkingText">
 
@@ -472,11 +475,13 @@
 
                     </div>
 
+
                     <h2>
 
                         Your Personalized Travel Plan
 
                     </h2>
+
 
                     <p id="threadInfo">
 
@@ -515,11 +520,13 @@
 
                 </div>
 
+
                 <h1 class="pdf-title">
 
                     AI Travel Plan
 
                 </h1>
+
 
                 <div id="resultBox" class="result-box"></div>
 
@@ -542,15 +549,11 @@
         <div class="footer-brand">
 
             <span class="footer-logo">
-
                 ✈
-
             </span>
 
             <span>
-
                 Travexa AI
-
             </span>
 
         </div>
@@ -565,7 +568,7 @@
 
         <small>
 
-            FastAPI • LangGraph • OpenAI • PostgreSQL • Tavily • AviationStack
+            FastAPI • LangGraph • OpenAI • MCP • Tavily • AviationStack • OpenWeather
 
         </small>
 
@@ -574,9 +577,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 
     <script src="/static/script.js"></script>
 

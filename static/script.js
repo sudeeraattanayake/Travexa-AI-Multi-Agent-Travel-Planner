@@ -62,7 +62,6 @@ function setLoading(isLoading) {
         thinkingStatus.classList.add("hidden");
 
         stopThinkingAnimation();
-
     }
 }
 
@@ -81,17 +80,17 @@ function startThinkingAnimation() {
 
         "Analyzing your travel request...",
 
-        "Searching for the best travel options...",
+        "Connecting to Travexa MCP services...",
 
-        "Checking flights and destinations...",
+        "Flight Agent is checking aviation data...",
 
-        "Researching hotels and accommodation...",
+        "Hotel Agent is searching with Tavily MCP...",
 
-        "Building your personalized itinerary...",
+        "Weather Agent is checking live weather...",
 
-        "Optimizing your travel plan...",
+        "Itinerary Agent is building your trip...",
 
-        "Preparing your Travexa AI experience..."
+        "Final Agent is preparing your travel plan..."
 
     ];
 
@@ -127,7 +126,6 @@ function stopThinkingAnimation() {
         );
 
         thinkingInterval = null;
-
     }
 }
 
@@ -204,7 +202,6 @@ function showResult(
 
         resultBox.innerText =
             answer;
-
     }
 
 
@@ -302,7 +299,6 @@ async function sendMessage() {
             throw new Error(
                 "The server returned an invalid response."
             );
-
         }
 
 
@@ -315,7 +311,6 @@ async function sendMessage() {
                 data.error ||
                 "Something went wrong while generating your travel plan."
             );
-
         }
 
 
@@ -344,7 +339,6 @@ async function sendMessage() {
     } finally {
 
         setLoading(false);
-
     }
 }
 
@@ -616,8 +610,8 @@ if (orbScene) {
 
             orbScene.style.transform =
                 `
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
                 `;
 
         }
@@ -633,7 +627,6 @@ if (orbScene) {
 
         }
     );
-
 }
 
 
@@ -695,9 +688,9 @@ if (
 
             plannerCard.style.transform =
                 `
-                perspective(1200px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
+                    perspective(1200px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
                 `;
 
         }
@@ -710,14 +703,13 @@ if (
 
             plannerCard.style.transform =
                 `
-                perspective(1200px)
-                rotateX(0deg)
-                rotateY(0deg)
+                    perspective(1200px)
+                    rotateX(0deg)
+                    rotateY(0deg)
                 `;
 
         }
     );
-
 }
 
 
@@ -756,5 +748,4 @@ if (userInput) {
 
         }
     );
-
 }
